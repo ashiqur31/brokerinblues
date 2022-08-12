@@ -27,7 +27,7 @@ const PropertySchema = mongoose.Schema({
         type: Number
     },
     price: {
-        time: Number
+        type: Number
     },
     agencies: {
         type: String
