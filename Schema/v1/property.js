@@ -39,15 +39,13 @@ const PropertySchema = mongoose.Schema({
         type: String
     },
     country: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Country'
+        type: String,
     },
     city: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'City'
+        type: String
     },
     zipCode: {
-        type: String
+        type: Number
     },
     landmark: {
         type: String

@@ -49,7 +49,7 @@ class FileManager {
                 if(isValid){
                     uploadError = null
                 }
-                console.log("multerfile",file)
+                // console.log("multerfile",file)
                 
                 //cb(uploadError, this.resolvePath(file.fieldname))
                 cb(uploadError, this.resolvePath())

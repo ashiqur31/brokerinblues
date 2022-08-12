@@ -10,17 +10,19 @@ router.route('/').get(propertiesController.list);
 // Create a new property
 router.route('/').post(fileManager.upload().array('media', 10),propertiesController.add);
 
+// deleted list
+router.route('/list').get(propertiesController.deletedlist);
+
 // Retrieve a single property with id
 router.route('/:id').get(propertiesController.findOne);
 
 // Update a property with id
-router.route('/:id').put(fileManager.upload().array('media', 10),propertiesController.update);
+router.route('/').put(fileManager.upload().array('media', 10),propertiesController.update);
 
 // Delete a property with id
 router.route('/:id').post(propertiesController.delete);
 
-// deleted list
-router.route('/list/').get(propertiesController.deletedlist);
+
 
 
 module.exports = router;

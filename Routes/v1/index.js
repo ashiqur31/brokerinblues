@@ -7,8 +7,8 @@ module.exports = app => {
         // Require Category routes
         app.use("/" + process.env.API_VERSION_v1 + "/properties", require('./properties'));
         
-        // Require Country routes
-        // app.use("/" + process.env.API_VERSION_v1 + "/countries", require('./countries'));
+        // Require Agency routes
+        app.use("/" + process.env.API_VERSION_v1 + "/agencies", require('./agencies'));
 
     } catch(error) {
         console.log("error:", error);
