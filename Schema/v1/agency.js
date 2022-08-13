@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const AgencySchema = mongoose.Schema({
-    agencyName: {
+    name: {
         type: String,
         required: [true, 'Agency Name required']
     },
-    phoneNumber: {
+    phone: {
         type: Number,
         required: [true, 'Agency Phone Number required']
     },
@@ -13,6 +13,7 @@ const AgencySchema = mongoose.Schema({
         type: String,
         required: [true, 'Email required']
     },
+    
     is_deleted: {
         type: Number,
         min: 0,

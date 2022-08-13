@@ -9,8 +9,8 @@ const PropertySchema = mongoose.Schema({
         type: String,
         required: [true, 'Property Status required']
     },
-    propertyPrice: {
-        type: Number,
+    featured: {
+        type: String,
         required: [true, 'Property Price required']
     },
     maxRooms: {
