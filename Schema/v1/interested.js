@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const InterestedSchema = mongoose.Schema({
     name: {
         type: String,
-        // required: [true, 'User Name required']
+        required: [true, 'User Name required']
     },
     phone: {
         type: Number,
-        // required: [true, 'User Phone Number required']
+        required: [true, 'User Phone Number required']
     },
     email: {
         type: String,
-        // required: [true, 'Email required']
+        required: [true, 'Email required']
     },
     message: {
         type:String
