@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const agencyController = new (require('../../Controller/v1/agencies'))();
+const fileManager = new (require('../../config/fileManager'))();
 
 // Retrieve all agencies
 router.route('/').get(agencyController.list);
 
 // Create a new agency
-router.route('/').post(agencyController.add);
+router.route('/').post(fileManager.upload().array('media', 10),agencyController.add);
 
 // deleted list
 router.route('/list').get(agencyController.deletedlist);

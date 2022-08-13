@@ -48,6 +48,18 @@ class AgencyController {
                 });
             }
 
+            const file = req.files;
+            // check if image selected
+            if(file) {
+                req.body.media = [];
+                // show image path
+                for(var i =0; i < file.length;i++) {
+                    const fileName = req.files[i].filename;
+                    const basepath = `/assets/images/`;
+                    req.body.media.push(`${basepath}${fileName}`) ;
+                }
+            }
+
             let data = await agencyModel.add(req.body);
             res.status(201).send({
                 message:"Agency data created successfully",

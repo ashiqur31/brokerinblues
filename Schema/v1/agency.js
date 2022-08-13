@@ -13,6 +13,10 @@ const AgencySchema = mongoose.Schema({
         type: String,
         required: [true, 'Email required']
     },
+    media: {
+        type:Array,
+        default: []
+    },
     
     is_deleted: {
         type: Number,
