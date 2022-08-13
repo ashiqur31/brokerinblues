@@ -1,16 +1,16 @@
-const agencyModel = new (require('../../Model/v1/agencies'))();
+const interestedModel = new (require('../../Model/v1/interested'))();
 
-class AgencyController {
-    // get agency list
+class InterestedController {
+    // get interested list
     async list(req, res) {
         try {
             let currentpage = parseInt(req.query.currentPage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
             let offset = (currentpage - 1) * recordsPerPage;
-            let data = await agencyModel.list(offset, recordsPerPage);
-            let count = await agencyModel.count();
+            let data = await interestedModel.list(offset, recordsPerPage);
+            let count = await interestedModel.count();
             res.status(200).send({
-                message: "Agency list retrieved successfully",
+                message: "Interested list retrieved successfully",
                 count: count,
                 data: data
             })
@@ -20,16 +20,16 @@ class AgencyController {
         }
     }
 
-     // get deleted agency list
+     // get deleted Interested list
      async deletedlist(req, res) {
         try {
             let currentpage = parseInt(req.query.currentPage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
             let offset = (currentpage - 1) * recordsPerPage;
-            let data = await agencyModel.deletedlist(offset, recordsPerPage);
-            let count = await agencyModel.deletedcount();
+            let data = await interestedModel.deletedlist(offset, recordsPerPage);
+            let count = await interestedModel.deletedcount();
             res.status(200).send({
-                message: "Deleted agency list retrieved successfully",
+                message: "Deleted Interested list retrieved successfully",
                 count: count,
                 data: data
             })
@@ -39,7 +39,7 @@ class AgencyController {
         }
     }
 
-    // add agency 
+    // add Interested 
     async add(req, res) {
         try {
             if(!req.body) {
@@ -48,9 +48,9 @@ class AgencyController {
                 });
             }
 
-            let data = await agencyModel.add(req.body);
+            let data = await interestedModel.add(req.body);
             res.status(201).send({
-                message:"Agency data created successfully",
+                message:"Interested data created successfully",
                 data: data
             })
         } catch(error) {
@@ -59,12 +59,12 @@ class AgencyController {
         }
     }
 
-    // retrieve single agency with id
+    // retrieve single Interested with id
     async findOne(req, res) {
         try {
-            let data = await agencyModel.findone(req.params.id);
+            let data = await interestedModel.findone(req.params.id);
             res.status(200).send({
-                message: "Agency details retrieved successfully",
+                message: "Interested details retrieved successfully",
                 data: data
             });
         } catch(error) {
@@ -75,20 +75,9 @@ class AgencyController {
 
     async update(req, res) {
         try {
-            const file = req.files;
-            // check if image selected
-            if(file) {
-                req.body.media = [];
-                // show image path
-                for(var i =0; i < file.length;i++) {
-                    const fileName = req.files[i].filename;
-                    const basepath = `/assets/images/`;
-                    req.body.media.push(`${basepath}${fileName}`) ;
-                }
-            }
-            let data = await agencyModel.update(req.body.id, req.body)
+            let data = await interestedModel.update(req.body.id, req.body)
             res.status(200).send({
-                message: "Agency details updated successfully",
+                message: "Interested details updated successfully",
                 data: data
             });
         } catch (error) {
@@ -99,9 +88,9 @@ class AgencyController {
 
     async delete(req, res) {
         try {
-            let data = await agencyModel.delete(req.params.id);
+            let data = await interestedModel.delete(req.params.id);
             res.status(200).send({
-                message: "Agency details deleted successfully",
+                message: "Interested details deleted successfully",
             });
         } catch(error) {
             console.log(error);
@@ -110,4 +99,4 @@ class AgencyController {
     }
 }
 
-module.exports = AgencyController;
+module.exports = InterestedController;

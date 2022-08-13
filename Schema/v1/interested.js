@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const InterestedSchema = mongoose.Schema({
-    userName: {
+    name: {
         type: String,
         required: [true, 'User Name required']
     },
-    phoneNumber: {
+    phone: {
         type: Number,
         required: [true, 'User Phone Number required']
     },
@@ -13,7 +13,7 @@ const InterestedSchema = mongoose.Schema({
         type: String,
         required: [true, 'Email required']
     },
-    description: {
+    message: {
         type:String
     },
     is_deleted: {
