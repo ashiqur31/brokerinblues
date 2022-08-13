@@ -10,6 +10,15 @@ router.route('/').get(propertiesController.list);
 // Create a new property
 router.route('/').post(fileManager.upload().array('media', 10),propertiesController.add);
 
+// forsale list
+router.route('/forsalelist').get(propertiesController.forsalelist);
+
+// deleted list
+router.route('/forrentlist').get(propertiesController.forrentlist);
+
+// deleted list
+router.route('/featuredlist').get(propertiesController.featuredlist);
+
 // deleted list
 router.route('/list').get(propertiesController.deletedlist);
 

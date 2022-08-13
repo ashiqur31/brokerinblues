@@ -6,10 +6,39 @@ class PropertyModel {
         return await propertySchema.find({is_deleted:0}).skip(offset).limit(recordsperpage);
     }
 
+     // get property for sale list
+     async forsalelist(offset, recordsperpage) {
+        return await propertySchema.find({$and:[{is_deleted:0},{propertyStatus:'For Sale'}]}).skip(offset).limit(recordsperpage);
+    }
+
+    // get property for rent list
+    async forrentlist(offset, recordsperpage) {
+        return await propertySchema.find({$and:[{is_deleted:0},{propertyStatus:'For Rent'}]}).skip(offset).limit(recordsperpage);
+    }
+
+    // get property for rent list
+    async featuredlist(offset, recordsperpage) {
+        return await propertySchema.find({$and:[{is_deleted:0},{featured:'Yes'}]}).skip(offset).limit(recordsperpage);
+    }
+
     // get property count
     async count() {
         return await propertySchema.count({is_deleted:0});
     }
+
+    async forsalecount() {
+        return await propertySchema.count({$and: [{is_deleted:0},{propertyStatus:'For Sale'}]});
+    }
+
+    async forrentcount() {
+        return await propertySchema.count({$and: [{is_deleted:0},{propertyStatus:'For Rent'}]});
+    }
+
+    async featuredcount() {
+        return await propertySchema.count({$and: [{is_deleted:0},{featured:'Yes'}]});
+    }
+
+
 
      // get deleted property list
      async deletedlist(offset, recordsperpage) {

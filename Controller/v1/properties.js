@@ -20,6 +20,63 @@ class PropertyController {
         }
     }
 
+     // get for sale property list
+     async forsalelist(req, res) {
+        try {
+            let currentpage = parseInt(req.query.currentPage) || 1;
+            let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
+            let offset = (currentpage - 1) * recordsPerPage;
+            let data = await propertyModel.forsalelist(offset, recordsPerPage);
+            let count = await propertyModel.forsalecount();
+            res.status(200).send({
+                message: "Property for sale list retrieved successfully",
+                count: count,
+                data: data
+            })
+        } catch(error) {
+            console.log(error);
+            res.status(400).send(error);
+        }
+    }
+
+     // get for rent property list
+     async forrentlist(req, res) {
+        try {
+            let currentpage = parseInt(req.query.currentPage) || 1;
+            let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
+            let offset = (currentpage - 1) * recordsPerPage;
+            let data = await propertyModel.forrentlist(offset, recordsPerPage);
+            let count = await propertyModel.forrentcount();
+            res.status(200).send({
+                message: "Property for rent list retrieved successfully",
+                count: count,
+                data: data
+            })
+        } catch(error) {
+            console.log(error);
+            res.status(400).send(error);
+        }
+    }
+
+    // get featured property list
+    async featuredlist(req, res) {
+        try {
+            let currentpage = parseInt(req.query.currentPage) || 1;
+            let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
+            let offset = (currentpage - 1) * recordsPerPage;
+            let data = await propertyModel.featuredlist(offset, recordsPerPage);
+            let count = await propertyModel.featuredcount();
+            res.status(200).send({
+                message: "Featured Property list retrieved successfully",
+                count: count,
+                data: data
+            })
+        } catch(error) {
+            console.log(error);
+            res.status(400).send(error);
+        }
+    }
+
      // get property list
      async deletedlist(req, res) {
         try {
