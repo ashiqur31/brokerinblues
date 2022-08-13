@@ -1,4 +1,5 @@
 const interestedModel = new (require('../../Model/v1/interested'))();
+const {sendWelcomeEmail} = require('../../email/account');
 
 class InterestedController {
     // get interested list
@@ -49,6 +50,7 @@ class InterestedController {
             }
 
             let data = await interestedModel.add(req.body);
+            sendWelcomeEmail(data.email, data.name, data.phone, data.message);
             res.status(201).send({
                 message:"Interested data created successfully",
                 data: data
