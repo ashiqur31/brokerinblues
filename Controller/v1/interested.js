@@ -6,7 +6,7 @@ class InterestedController {
     async list(req, res) {
         try {
             let currentpage = parseInt(req.query.currentPage) || 1;
-            let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
+            let recordsPerPage = parseInt(req.query.recordsPerPage) || 100000000000;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await interestedModel.list(offset, recordsPerPage);
             let count = await interestedModel.count();
