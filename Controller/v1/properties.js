@@ -179,9 +179,14 @@ class PropertyController {
 
     async filterProperties(req, res) {
         try{
-            let data = await propertyModel.filterData(req.body);
+            let currentpage = parseInt(req.query.currentPage) || 1;
+            let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
+            let offset = (currentpage - 1) * recordsPerPage;
+            let data = await propertyModel.filterData(req.body, offset, recordsPerPage);
+            let count = await propertyModel.filtereDataCount(req.body);
             res.status(200).send({
                 message: "Filtered data",
+                count:count,
                 data:data
             })
         } catch(error) {

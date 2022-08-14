@@ -72,7 +72,7 @@ class PropertyModel {
     }
 
     // filter data
-    async filterData(data) {
+    async filterData(data, offset, recordsperpage) {
         return await propertySchema.find({$and: [{
             propertyStatus:data.propertyStatus}, 
             {propertyType:data.propertyType}, 
@@ -81,7 +81,21 @@ class PropertyModel {
             {baths:{$lte: data.baths}},
             {price:{$gte:data.minPrice, $lte:data.maxPrice}},
             {area:{$gte:data.minArea, $lte:data.maxArea}}
-        ]})
+        ]}).skip(offset).limit(recordsperpage);
+    }
+
+    // filter data count
+    async filtereDataCount(data) {
+        return await propertySchema.count({$and: [{
+            propertyStatus:data.propertyStatus},
+            {is_deleted:0},
+            {propertyType:data.propertyType}, 
+            {maxRooms:{$lte: data.maxRooms}},
+            {beds:{$lte: data.beds}},
+            {baths:{$lte: data.baths}},
+            {price:{$gte:data.minPrice, $lte:data.maxPrice}},
+            {area:{$gte:data.minArea, $lte:data.maxArea}}
+        ]});
     }
 }
 
