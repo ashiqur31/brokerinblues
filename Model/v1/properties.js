@@ -70,6 +70,19 @@ class PropertyModel {
         return await propertySchema.findByIdAndUpdate(request_id,
         {$set: { is_deleted : 1}});
     }
+
+    // filter data
+    async filterData(data) {
+        return await propertySchema.find({$and: [{
+            propertyStatus:data.propertyStatus}, 
+            {propertyType:data.propertyType}, 
+            {maxRooms:{$lte: data.maxRooms}},
+            {beds:{$lte: data.beds}},
+            {baths:{$lte: data.baths}},
+            {price:{$gte:data.minPrice, $lte:data.maxPrice}},
+            {area:{$gte:data.minArea, $lte:data.maxArea}}
+        ]})
+    }
 }
 
 module.exports = PropertyModel

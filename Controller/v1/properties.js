@@ -176,6 +176,19 @@ class PropertyController {
             res.status(400).send(error);
         }
     }
+
+    async filterProperties(req, res) {
+        try{
+            let data = await propertyModel.filterData(req.body);
+            res.status(200).send({
+                message: "Filtered data",
+                data:data
+            })
+        } catch(error) {
+            console.log(error);
+            res.status(400).send(error);
+        }
+    }
 }
 
 module.exports = PropertyController;

@@ -13,14 +13,17 @@ router.route('/').post(fileManager.upload().array('media', 10),propertiesControl
 // forsale list
 router.route('/forsalelist').get(propertiesController.forsalelist);
 
-// deleted list
+// forrent list
 router.route('/forrentlist').get(propertiesController.forrentlist);
 
-// deleted list
+// featured list
 router.route('/featuredlist').get(propertiesController.featuredlist);
 
 // deleted list
 router.route('/list').get(propertiesController.deletedlist);
+
+// deleted list
+router.route('/filteredlist').get(propertiesController.filterProperties);
 
 // Retrieve a single property with id
 router.route('/:id').get(propertiesController.findOne);
