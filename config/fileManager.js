@@ -3,7 +3,7 @@ const path = require('path');
 const multer = require('multer');
 
 // Image size and type validation
-const maxSize = 1 * 1024 * 1024; // for 1MB
+const maxSize = 5 * 1024 * 1024; // for 1MB
 
 const FILE_TYPE_MAP = {
     'image/png' : 'png',
