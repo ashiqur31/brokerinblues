@@ -23,7 +23,7 @@ router.route('/featuredlist').get(propertiesController.featuredlist);
 router.route('/list').get(propertiesController.deletedlist);
 
 // deleted list
-router.route('/filteredlist').get(propertiesController.filterProperties);
+router.route('/filteredlist').post(propertiesController.filterProperties);
 
 // Retrieve a single property with id
 router.route('/:id').get(propertiesController.findOne);
