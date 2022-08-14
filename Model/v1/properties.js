@@ -80,7 +80,7 @@ class PropertyModel {
             {beds:{$lte: data.beds}},
             {baths:{$lte: data.baths}},
             // {price:{$gte:data.minPrice, $lte:data.maxPrice}},
-            // {area:{$gte:data.minArea, $lte:data.maxArea}}
+            {area:{$gte:data.minArea, $lte:data.maxArea}}
         ]})
     }
 }
