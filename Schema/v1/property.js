@@ -11,7 +11,7 @@ const PropertySchema = mongoose.Schema({
     },
     featured: {
         type: String,
-        required: [true, 'Property Price required']
+        required: [true, 'Featured required']
     },
     maxRooms: {
         type: Number,
@@ -96,6 +96,9 @@ const PropertySchema = mongoose.Schema({
     balcony: {
         type: Boolean,
         default: false
+    },
+    agencyId: {
+        type: String,
     },
     is_deleted: {
         type: Number,
