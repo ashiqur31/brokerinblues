@@ -20,7 +20,6 @@ const sendWelcomeEmail = (email, name, phone, message) => {
 
     const msg = {
         to: 'marketing@brokerinblue.com',
-        cc: 'Business@brokerinblue.com', // Change to your recipient
         from: 'ashiqur31@gmail.com', // Change to your verified sender
         subject: 'Brokerinblue: Submitted details',
         // text: 'and easy to do anywhere, even with Node.js',
