@@ -54,7 +54,7 @@ class PropertyModel {
     async latestlist(offset, recordsperpage) {
         var today = new Date();
         var priorDate = new Date(new Date().setDate(today.getDate() - 30));
-        return await propertySchema.find({$and:[{createdAt:{$gte:priorDate, $lte:today}}]}).skip(offset).limit(recordsperpage);
+        return await propertySchema.find({$and:[{createdAt:{$gte:priorDate, $lte:today}}, {is_deleted:0}]}).skip(offset).limit(recordsperpage);
     }
 
     // get latest properties count
