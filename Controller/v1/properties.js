@@ -79,6 +79,27 @@ class PropertyController {
         }
     }
 
+
+     // get latest property list
+     async latestlist(req, res) {
+        try {
+            let currentpage = parseInt(req.query.currentpage) || 1;
+            let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
+            let offset = (currentpage - 1) * recordsPerPage;
+            console.log(offset);
+            let data = await propertyModel.latestlist(offset, recordsPerPage);
+            let count = await propertyModel.latestlistcount();
+            res.status(200).send({
+                message: "Latest Property list retrieved successfully",
+                count: count,
+                data: data
+            })
+        } catch(error) {
+            console.log(error);
+            res.status(400).send(error);
+        }
+    }
+
      // get property list
      async deletedlist(req, res) {
         try {

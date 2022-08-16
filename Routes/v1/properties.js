@@ -19,6 +19,12 @@ router.route('/forrentlist').get(propertiesController.forrentlist);
 // featured list
 router.route('/featuredlist').get(propertiesController.featuredlist);
 
+// featured list
+router.route('/latestlist').get(propertiesController.latestlist);
+
+// featured list
+router.route('/featuredlist').get(propertiesController.featuredlist);
+
 // deleted list
 router.route('/list').get(propertiesController.deletedlist);
 

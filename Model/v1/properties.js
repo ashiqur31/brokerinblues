@@ -40,14 +40,28 @@ class PropertyModel {
 
 
 
-     // get deleted property list
-     async deletedlist(offset, recordsperpage) {
+    // get deleted property list
+    async deletedlist(offset, recordsperpage) {
         return await propertySchema.find({is_deleted:1}).skip(offset).limit(recordsperpage);
     }
 
     // get deleted property count
     async deletedcount() {
         return await propertySchema.count({is_deleted:1});
+    }
+
+    // get latest properties
+    async latestlist(offset, recordsperpage) {
+        var today = new Date();
+        var priorDate = new Date(new Date().setDate(today.getDate() - 30));
+        return await propertySchema.find({$and:[{createdAt:{$gte:priorDate, $lte:today}}]}).skip(offset).limit(recordsperpage);
+    }
+
+    // get latest properties count
+    async latestlistcount(data) {
+        var today = new Date();
+        var priorDate = new Date(new Date().setDate(today.getDate() - 30));
+        return await propertySchema.count({$and:[{createdAt:{$gte:priorDate, $lte:today}}]})
     }
 
     // add property data
