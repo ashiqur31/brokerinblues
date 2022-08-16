@@ -25,7 +25,7 @@ class InterestedController {
      async deletedlist(req, res) {
         try {
             let currentpage = parseInt(req.query.currentpage) || 1;
-            let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
+            let recordsPerPage = parseInt(req.query.recordsPerPage) || 10000000000000;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await interestedModel.deletedlist(offset, recordsPerPage);
             let count = await interestedModel.deletedcount();
