@@ -5,7 +5,7 @@ class AgencyController {
     async list(req, res) {
         try {
             let currentpage = parseInt(req.query.currentpage) || 1;
-            let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
+            let recordsPerPage = parseInt(req.query.recordsPerPage) || 10000000000000;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await agencyModel.list(offset, recordsPerPage);
             let count = await agencyModel.count();
@@ -24,7 +24,7 @@ class AgencyController {
      async deletedlist(req, res) {
         try {
             let currentpage = parseInt(req.query.currentpage) || 1;
-            let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
+            let recordsPerPage = parseInt(req.query.recordsPerPage) || 10000000000000;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await agencyModel.deletedlist(offset, recordsPerPage);
             let count = await agencyModel.deletedcount();
