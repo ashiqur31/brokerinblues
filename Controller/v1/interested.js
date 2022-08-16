@@ -5,7 +5,7 @@ class InterestedController {
     // get interested list
     async list(req, res) {
         try {
-            let currentpage = parseInt(req.query.currentPage) || 1;
+            let currentpage = parseInt(req.query.currentpage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 100000000000;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await interestedModel.list(offset, recordsPerPage);
@@ -24,7 +24,7 @@ class InterestedController {
      // get deleted Interested list
      async deletedlist(req, res) {
         try {
-            let currentpage = parseInt(req.query.currentPage) || 1;
+            let currentpage = parseInt(req.query.currentpage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await interestedModel.deletedlist(offset, recordsPerPage);

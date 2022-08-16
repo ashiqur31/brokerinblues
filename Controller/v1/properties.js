@@ -4,9 +4,10 @@ class PropertyController {
     // get property list
     async list(req, res) {
         try {
-            let currentpage = parseInt(req.query.currentPage) || 1;
+            let currentpage = parseInt(req.query.currentpage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
             let offset = (currentpage - 1) * recordsPerPage;
+            console.log(currentpage);
             let data = await propertyModel.list(offset, recordsPerPage);
             let count = await propertyModel.count();
             res.status(200).send({
@@ -23,9 +24,10 @@ class PropertyController {
      // get for sale property list
      async forsalelist(req, res) {
         try {
-            let currentpage = parseInt(req.query.currentPage) || 1;
+            let currentpage = parseInt(req.query.currentpage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
             let offset = (currentpage - 1) * recordsPerPage;
+            console.log(offset);
             let data = await propertyModel.forsalelist(offset, recordsPerPage);
             let count = await propertyModel.forsalecount();
             res.status(200).send({
@@ -42,7 +44,7 @@ class PropertyController {
      // get for rent property list
      async forrentlist(req, res) {
         try {
-            let currentpage = parseInt(req.query.currentPage) || 1;
+            let currentpage = parseInt(req.query.currentpage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await propertyModel.forrentlist(offset, recordsPerPage);
@@ -61,7 +63,7 @@ class PropertyController {
     // get featured property list
     async featuredlist(req, res) {
         try {
-            let currentpage = parseInt(req.query.currentPage) || 1;
+            let currentpage = parseInt(req.query.currentpage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await propertyModel.featuredlist(offset, recordsPerPage);
@@ -80,7 +82,7 @@ class PropertyController {
      // get property list
      async deletedlist(req, res) {
         try {
-            let currentpage = parseInt(req.query.currentPage) || 1;
+            let currentpage = parseInt(req.query.currentpage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await propertyModel.deletedlist(offset, recordsPerPage);
@@ -179,7 +181,7 @@ class PropertyController {
 
     async filterProperties(req, res) {
         try{
-            let currentpage = parseInt(req.query.currentPage) || 1;
+            let currentpage = parseInt(req.query.currentpage) || 1;
             let recordsPerPage = parseInt(req.query.recordsPerPage) || 9;
             let offset = (currentpage - 1) * recordsPerPage;
             let data = await propertyModel.filterData(req.body, offset, recordsPerPage);
