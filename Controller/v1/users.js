@@ -14,7 +14,7 @@ class UserController {
             const user = await usersModel.checkUser(req.body.email)
               
             // Encrypt password
-            req.body.password = bcrypt.hash(req.body.password, 8)
+            req.body.password = await bcrypt.hash(req.body.password, 8)
             
             if (user) {
                 return res.status(404)
