@@ -1,6 +1,8 @@
 const usersModel = new (require('../../Model/v1/users'))();
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
 // const nodeMailer = require('nodemailer');
+var CryptoJS = require("crypto-js");
+
 class UserController {
      // Create new user
      async add(req, res) {
@@ -14,7 +16,8 @@ class UserController {
             const user = await usersModel.checkUser(req.body.email)
               
             // Encrypt password
-            req.body.password = await bcrypt.hash(req.body.password, 8)
+            // req.body.password = await bcrypt.hash(req.body.password, 8)
+            req.body.password = CryptoJS.AES.encrypt(req.body.password, process.env.JWT_SECRET).toString();
             
             if (user) {
                 return res.status(404)
