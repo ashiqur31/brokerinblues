@@ -1,5 +1,5 @@
 const usersModel = new (require('../../Model/v1/users'))();
-const crypto = require('crypto-js');
+const crypto = require('bcryptjs');
 // const nodeMailer = require('nodemailer');
 class UserController {
      // Create new user
@@ -14,7 +14,7 @@ class UserController {
             const user = await usersModel.checkUser(req.body.email)
               
             // Encrypt password
-            // req.body.password = crypto.AES.encrypt(req.body.password, process.env.JWT_SECRET).toString();
+            req.body.password = bcrypt.hash(req.body.password, 8)
             
             if (user) {
                 return res.status(404)
