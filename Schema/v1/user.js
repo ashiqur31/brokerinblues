@@ -23,12 +23,9 @@ const UserSchema = mongoose.Schema({
         max:1,
         default: 1
     },
-    tokens: [{
-        token: {
-            type:String
-            
-        }
-    }]
+    tokens: {
+        type:String
+    }
 },{
     timestamps: true
 });

@@ -49,30 +49,33 @@ class UserController {
             }
 
             // Decrypt password
-            var decrypted = crypto.AES.decrypt(user.password, process.env.JWT_SECRET).toString(crypto.enc.Utf8)
+            var decrypted = CryptoJS.AES.decrypt(user.password, process.env.JWT_SECRET).toString(CryptoJS.enc.Utf8)
             
             //Check password match
             if (req.body.password !== decrypted) {
-                return res.status(404).send({
-                    message: "Password mismatch"
+                return res.status(200).send({
+                    message: "Incorrect Password",
+                    success: false
                 });
             }
 
             //Generate Token
             const token = await usersModel.generateAuthToken(user);
-            user.tokens = user.tokens.concat({ token })
+            user.tokens = token;
             await user.save();
 
             if(user.role == 0){
                 res.status(201).send({ 
                     message:'Admin is successfully logged in!!',
-                    data: {id: user._id, name: user.name, email: user.email}
+                    success:true,
+                    data: {id: user._id, name: user.name, email: user.email, role: user.role, token: user.tokens}
                 });
             }
             else if(user.role == 1){
                 res.status(201).send({ 
                     message:'User is successfully logged in!!',
-                    data: {id: user._id, name: user.name, email: user.email}
+                    success:true,
+                    data: {id: user._id, name: user.name, email: user.email, role: user.role, token: user.tokens}
                 });
             }
         } catch(error) {
@@ -80,6 +83,23 @@ class UserController {
             res.status(401).send(error);
         }
     }
+
+
+    // logout
+    async logout(req, res) {
+        try {
+            await usersModel.logout(req.body.id);
+            res.status(200).send({
+                message:"Logged out successfully",
+                success: true
+            })
+        } catch(error) {
+            console.log(error);
+            res.status(401).send(error);
+        }
+    }
+
+
 
 }
 

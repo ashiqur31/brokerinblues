@@ -36,6 +36,11 @@ class UserModel {
             })
     }
 
+    // logout a user with id
+    async logout(request_id) {
+        return await userSchema.findByIdAndUpdate(request_id, {tokens:''})
+    }
+
     // Delete a user with id
     async delete(request_id) {
         return await userSchema.findByIdAndRemove(request_id)
