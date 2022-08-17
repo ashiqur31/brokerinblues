@@ -29,6 +29,7 @@ class UserController {
                 data: {id: data._id, name: data.name, email: data.email}
             });
         } catch (error) {
+            console.log("error----======>>>", error);
             res.status(400).send(error);
         }
     }
