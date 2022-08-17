@@ -14,7 +14,7 @@ class UserController {
             const user = await usersModel.checkUser(req.body.email)
               
             // Encrypt password
-            req.body.password = crypto.AES.encrypt(req.body.password, process.env.JWT_SECRET).toString();
+            // req.body.password = crypto.AES.encrypt(req.body.password, process.env.JWT_SECRET).toString();
             
             if (user) {
                 return res.status(404)
