@@ -1,5 +1,5 @@
 const usersModel = new (require('../../Model/v1/users'))();
-const crypto = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 // const nodeMailer = require('nodemailer');
 class UserController {
      // Create new user
