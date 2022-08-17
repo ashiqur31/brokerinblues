@@ -10,10 +10,10 @@ module.exports = app => {
         // Require Agency routes
         app.use("/" + process.env.API_VERSION_v1 + "/agencies", require('./agencies'));
         
-        // Require Agency routes
+        // Require interested routes
         app.use("/" + process.env.API_VERSION_v1 + "/interested", require('./interested'));
         
-        // Require Agency routes
+        // Require user routes
         app.use("/" + process.env.API_VERSION_v1 + "/users", require('./users'));
 
     } catch(error) {
