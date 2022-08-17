@@ -34,48 +34,48 @@ class UserController {
     }
 
 
-    // // Login Customer
-    // async login(req, res) {
-    //     try {
-    //         const user = await usersModel.checkUser(req.body.email);
-    //         if (!user) {
-    //             return res.status(404).send({
-    //                 message: "Email Id not found"
-    //             });
-    //         }
+    // Login Customer
+    async login(req, res) {
+        try {
+            const user = await usersModel.checkUser(req.body.email);
+            if (!user) {
+                return res.status(404).send({
+                    message: "Email Id not found"
+                });
+            }
 
-    //         // Decrypt password
-    //         var decrypted = crypto.AES.decrypt(user.password, process.env.JWT_SECRET).toString(crypto.enc.Utf8)
+            // Decrypt password
+            var decrypted = crypto.AES.decrypt(user.password, process.env.JWT_SECRET).toString(crypto.enc.Utf8)
             
-    //         //Check password match
-    //         if (req.body.password !== decrypted) {
-    //             return res.status(404).send({
-    //                 message: "Password mismatch"
-    //             });
-    //         }
+            //Check password match
+            if (req.body.password !== decrypted) {
+                return res.status(404).send({
+                    message: "Password mismatch"
+                });
+            }
 
-    //         //Generate Token
-    //         const token = await usersModel.generateAuthToken(user);
-    //         user.tokens = user.tokens.concat({ token })
-    //         await user.save();
+            //Generate Token
+            const token = await usersModel.generateAuthToken(user);
+            user.tokens = user.tokens.concat({ token })
+            await user.save();
 
-    //         if(user.role == 0){
-    //             res.status(201).send({ 
-    //                 message:'Admin is successfully logged in!!',
-    //                 data: {id: user._id, name: user.name, email: user.email}
-    //             });
-    //         }
-    //         else if(user.role == 1){
-    //             res.status(201).send({ 
-    //                 message:'User is successfully logged in!!',
-    //                 data: {id: user._id, name: user.name, email: user.email}
-    //             });
-    //         }
-    //     } catch(error) {
-    //         console.log(error);
-    //         res.status(401).send(error);
-    //     }
-    // }
+            if(user.role == 0){
+                res.status(201).send({ 
+                    message:'Admin is successfully logged in!!',
+                    data: {id: user._id, name: user.name, email: user.email}
+                });
+            }
+            else if(user.role == 1){
+                res.status(201).send({ 
+                    message:'User is successfully logged in!!',
+                    data: {id: user._id, name: user.name, email: user.email}
+                });
+            }
+        } catch(error) {
+            console.log(error);
+            res.status(401).send(error);
+        }
+    }
 
 }
 

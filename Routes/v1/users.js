@@ -7,7 +7,7 @@ const usersController = new (require('../../Controller/v1/users'))();
 router.route('/').post(usersController.add);
 
 // Login Customer
-// router.route('/login').post(usersController.login);
+router.route('/login').post(usersController.login);
 
 
 
