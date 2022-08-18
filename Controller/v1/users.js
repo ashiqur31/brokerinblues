@@ -1,6 +1,8 @@
 const usersModel = new (require('../../Model/v1/users'))();
 // const bcrypt = require('bcryptjs');
 // const nodeMailer = require('nodemailer');
+const { sendPassword } = require('../../email/account');
+
 var CryptoJS = require("crypto-js");
 
 class UserController {
@@ -99,8 +101,21 @@ class UserController {
         }
     }
 
-
-
+    // forgot password
+    async forgotPassword(req, res) {
+        try {
+            let user = await usersModel.checkUser(req.body.email);
+            var password = CryptoJS.AES.decrypt(user.password, process.env.JWT_SECRET).toString(CryptoJS.enc.Utf8)
+            sendPassword(user.email, password);
+            res.status(200).send({
+                message: "User details send succesfully",
+                success: true
+            })
+        } catch(error) {
+            console.log(error);
+            res.status(401).send(error);
+        }
+    }
 }
 
 module.exports = UserController;

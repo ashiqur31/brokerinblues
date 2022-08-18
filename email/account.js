@@ -35,4 +35,22 @@ const sendWelcomeEmail = (email, name, phone, message) => {
     })
 }
 
-module.exports = {sendWelcomeEmail}
+const sendPassword = (email, password) => {
+    const msg = {
+        to: email,
+        from: 'ashiqur31@gmail.com', // Change to your verified sender
+        subject: 'User Credentials',
+        text: 'Your username and password are as given below',
+        html: `<p>username: ${email} <br> Password: ${password}</p>`,
+    }
+    sgMail
+    .send(msg)
+    .then(() => {
+        console.log('Email sent')
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+}
+
+module.exports = {sendWelcomeEmail, sendPassword}

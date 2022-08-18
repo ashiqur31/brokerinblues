@@ -12,6 +12,7 @@ router.route('/login').post(usersController.login);
 // Logout user
 router.route('/logout').post(usersController.logout);
 
-
+// forgot password
+router.route('/forgotpassword').post(usersController.forgotPassword);
 
 module.exports = router;
