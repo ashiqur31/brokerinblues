@@ -10,7 +10,7 @@ router.route('/').post(savedpropertiesController.add);
 router.route('/list').post(savedpropertiesController.list);
 
 // delete property
-router.route('/delete').delete(savedpropertiesController.delete);
+router.route('/delete/:id').delete(savedpropertiesController.delete);
 
 
 

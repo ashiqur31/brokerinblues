@@ -8,11 +8,10 @@ class SavedPropertiesController {
             let savedProperty = [];
             const id = new Object(req.body.userId)
             let data = await savedPropertyModel.list(id);
+            console.log(data[0].id);
             for(var i = 0; i < data.length; i++) {
                 let savedProperties = await properties.findone(data[i].propertyId);
                 savedProperty.push(savedProperties);
-                let sid = {sid: data[i]._id}
-                savedProperty.push(sid);
             }
             res.status(200).send({
                 message: "Saved Property List Retreived successfully",
@@ -48,12 +47,12 @@ class SavedPropertiesController {
     // delete saved property
     async delete(req, res) {
         try {
-            let data = await savedPropertyModel.delete(req.sid);
+            let data = await savedPropertyModel.delete(req.params.id);
             res.status(200).send({
                 message: "Saved property deleted succesfully",
                 success: true,
                 data: data
-            })
+            });
         } catch(error) {
             console.log(error);
             res.status(401).send(error);
