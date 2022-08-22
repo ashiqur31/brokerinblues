@@ -8,12 +8,10 @@ class SavedPropertiesController {
             let savedProperty = [];
             const id = new Object(req.body.userId)
             let data = await savedPropertyModel.list(id);
-            console.log(data);
             for(var i = 0; i < data.length; i++) {
                 let savedProperties = await properties.findone(data[i].propertyId);
                 savedProperty.push(savedProperties);
             }
-            console.log(savedProperty);
             res.status(200).send({
                 message: "Saved Property List Retreived successfully",
                 success: true,
