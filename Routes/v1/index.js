@@ -15,6 +15,10 @@ module.exports = app => {
         
         // Require user routes
         app.use("/" + process.env.API_VERSION_v1 + "/users", require('./users'));
+        
+        // Required saved property 
+        app.use("/" + process.env.API_VERSION_v1 + "/savedproperty", require('./savedproperties'));
+        
 
     } catch(error) {
         console.log("error:", error);
