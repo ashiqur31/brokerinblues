@@ -48,7 +48,9 @@ class SavedPropertiesController {
     // delete saved property
     async delete(req, res) {
         try {
+            console.log(req.params.id);
             let data = await savedPropertyModel.delete(req.params.id);
+            console.log(data);
             res.status(200).send({
                 message: "Saved property deleted succesfully",
                 success: true,
