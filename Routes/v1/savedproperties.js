@@ -6,9 +6,12 @@ const savedpropertiesController = new (require('../../Controller/v1/savedpropert
 // Create saves properties
 router.route('/').post(savedpropertiesController.add);
 
-
 // get saved properties list
 router.route('/list').post(savedpropertiesController.list);
+
+// delete property
+router.route('/delete').post(savedpropertiesController.delete);
+
 
 
 module.exports = router;

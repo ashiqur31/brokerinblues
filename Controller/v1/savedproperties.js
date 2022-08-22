@@ -42,6 +42,21 @@ class SavedPropertiesController {
             res.status(401).send(error);
         }
     }
+
+    // delete saved property
+    async delete(req, res) {
+        try {
+            let data = await savedPropertyModel.delete(req.userId);
+            res.status(200).send({
+                message: "Saved property deleted succesfully",
+                success: true,
+                data: data
+            })
+        } catch(error) {
+            console.log(error);
+            res.status(401).send(error);
+        }
+    }
 }
 
 module.exports = SavedPropertiesController;

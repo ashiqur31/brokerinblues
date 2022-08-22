@@ -19,8 +19,9 @@ class SavedPropertyModel {
 
     // Delete a user with id
     async delete(request_id) {
-        return await savedPropertySchema.findByIdAndRemove(request_id)
+        return await savedPropertySchema.findOneAndRemove(request_id)
     }
+    
 
 }
 
